@@ -11,13 +11,14 @@ public class Exp3 {
 		int number=s.nextInt();
 		int dp[]=new int[number+1];
 		Arrays.fill(dp,-1);
-		minCoins(number, denominations,dp);
+		int ans=minCoins(number, denominations,dp);
 		int i=0;
 		for(int x:dp)
 		{
 			System.out.println("dp["+i+"]="+x);
 			i++;
 		}
+		System.out.println(ans);
 	}
 	
 	static int minCoins(int number,int[] denominations,int[] dp)

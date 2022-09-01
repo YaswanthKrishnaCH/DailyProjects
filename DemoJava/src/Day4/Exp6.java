@@ -1,9 +1,12 @@
 package Day4;
 
+import java.util.Scanner;
+
 public class Exp6 {
 
 	public static void main(String[] args) {
-		String str="500";
+		Scanner s=new Scanner(System.in);
+		String str=s.next();
 		char[] c=str.toCharArray();
 		int a=c.length;
 		System.out.println("The given Number is "+str);
