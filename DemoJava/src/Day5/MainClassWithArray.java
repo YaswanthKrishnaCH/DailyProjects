@@ -2,14 +2,24 @@ package Day5;
 
 import java.util.Scanner;
 
-public class MainClass {
+public class MainClassWithArray {
 
 	public static void main(String[] args) {
-		WithObjectStream obj=new WithObjectStream();
+		/*WithObjectStream obj=new WithObjectStream();
 		Dog[] arr=input();
 		obj.writeToFile(arr);
 		System.out.println("The dogs in the file are:");
 		obj.readFromFile();
+		*/
+		/*
+		WithBufferedWriter obj=new WithBufferedWriter();
+		obj.writeToFile();
+		obj.readFromFile();
+		*/
+		WithFileOutputStream obj=new WithFileOutputStream();
+		obj.writeToFile();
+		obj.readFromFile();
+		
 	}
 	
 	

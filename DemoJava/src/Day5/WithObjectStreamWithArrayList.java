@@ -6,8 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
-public class WithObjectStream {
+public class WithObjectStreamWithArrayList {
 	static FileOutputStream file;
 	static ObjectOutputStream output;
 	
@@ -22,13 +25,14 @@ public class WithObjectStream {
 		}
 	}
 	
-	public void writeToFile(Object[] obj) {
+	public void writeToFile(List<Dog> obj) {
 		try {
-			
-			Dog[] dogArr=(Dog[]) obj;
-			for(int i=0;i<dogArr.length;i++) {
-				output.writeObject(dogArr[i]);
-			}
+				Iterator<Dog> iter=obj.iterator();	
+				while(iter.hasNext())
+				{
+				output.writeObject(iter.next());
+				}
+				output.close();
 			}
 		catch(IOException e)
 		{
@@ -57,6 +61,16 @@ public class WithObjectStream {
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	void remove(List<Dog> list) {
+		System.out.println("Enter the index of the Dog to be removed:");
+		Scanner s=new Scanner(System.in);
+		list.remove(s.nextInt());
+		WithObjectStreamWithArrayList.Initialize();
+		writeToFile(list);
+		readFromFile();
+
 	}
 
 }
