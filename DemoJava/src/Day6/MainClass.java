@@ -18,7 +18,10 @@ public class MainClass {
 		union();
 		display();
 		
-		
+		//MultiThreading 
+		HeavyWorkRunnable obj=new HeavyWorkRunnable();
+		Thread t=new Thread(obj);
+		t.start();
 	}
 	
 	 static void input() {

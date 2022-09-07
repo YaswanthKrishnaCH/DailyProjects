@@ -6,7 +6,7 @@ import java.util.List;
 class Employee{
 	private String name;
 	private String address;
-	private double salary;
+	private Double salary;
 	Employee(){
 	}
 	Employee(String name,String address, Double salary) throws Exception
@@ -22,6 +22,10 @@ class Employee{
 		System.out.println("Name :"+name);
 		System.out.println("Address :"+address);
 		System.out.println("Salary :"+salary);
+	}
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", address=" + address + ", salary=" + salary + "]";
 	}
 }
 class SoftwareEngineers extends Employee{
@@ -43,6 +47,11 @@ class SoftwareEngineers extends Employee{
 		clients.forEach(System.out::println);
 		System.out.println("Experience: "+experience);
 	}
+	@Override
+	public String toString() {
+		return  super.toString()+" SoftwareEngineers [skills=" + skills + ", clients=" + clients + ", experience=" + experience + "]";
+	}
+	
 }
 class Managers extends SoftwareEngineers{
 	List<String> teams;

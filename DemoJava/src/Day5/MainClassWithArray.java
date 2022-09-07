@@ -3,8 +3,14 @@ package Day5;
 import java.util.Scanner;
 
 public class MainClassWithArray {
-
+ 
+	
 	public static void main(String[] args) {
+		String str="Yash";
+		String str1="Krish";
+		modify(str,str1);
+		System.out.println(str);
+		
 		/*WithObjectStream obj=new WithObjectStream();
 		Dog[] arr=input();
 		obj.writeToFile(arr);
@@ -22,7 +28,11 @@ public class MainClassWithArray {
 		
 	}
 	
-	
+	static void modify(String a,String b)
+	{
+		a=(a+b);
+		
+	}
 	static Dog[] input() {
 		Scanner s=new Scanner(System.in);
 		WithObjectStream.Initialize();
