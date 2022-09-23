@@ -5,12 +5,12 @@ interface abc{
 
 enum Colors implements abc{
 	White,Red();
-	
 	int value;
 	int getValue() {
 		return value;
 	}
 }
+
 
 public class Exp1 {
 
@@ -19,7 +19,7 @@ public class Exp1 {
 		Colors c2=Colors.White;
 		System.out.println("Value of c1 is "+c1.getValue()+" "+c1.st+" "+c2.getValue()+" "+c1.ordinal());
 		System.out.println(c1);
-
+		
 	}
-
+	
 }

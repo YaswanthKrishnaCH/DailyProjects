@@ -9,7 +9,6 @@ public class MainApp {
 		ApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
 		TextEditor editor=(TextEditor) context.getBean("textEditor");
 		editor.spellChecker.checkSpelling();
-
 	}
 
 }

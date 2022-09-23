@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +24,18 @@ public class ClientFacingEndPoint {
 	@Value("static messagee.....")
 	private String staticmsg;
 	
+	@Autowired
+	private Environment env;
+	
+	
 	@RequestMapping(method=RequestMethod.GET,value="hello1")
 	public String hello() {
 		return "WIthin Hello() Client Facing Controller. "+ message+" List Values:"+list.get(0)+" msg:"+staticmsg+" COnnection"+db.getConnection()+" HOST"+db.getHost()+db.getPort();
 		
+	}
+	
+	@GetMapping("/envDetails")
+	public String envDetails() {
+		return env.getProperty("db.connection");
 	}
 }
