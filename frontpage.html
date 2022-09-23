@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script>
+    
+function UserAction()
+{
+    
+    var textbox = document.getElementById("user"); 
+    theUrl='http://localhost:8084/user/'+encodeURIComponent(textbox.value);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.withCredentials = true;
+    xmlHttp.send(null);
+
+    console.log(xmlHttp.responseText);
+    show(xmlHttp.responseText);
+
+}
+function showAllMovies(data){
+    const obj = JSON.parse(data);
+    document.getElementById("allMovies").innerHTML="";
+    for(let i=0;i<obj.length;i++)
+    {
+        document.getElementById("allMovies").innerHTML +="<b>Movie Id:</b> "+obj[i].movieId+" <b>Movie Genre : </b>"+obj[i].movieGenre+" <b>Movie Name : </b>"+obj[i].movieName+"<br>";
+    }
+}
+function show(data) {
+    const obj = JSON.parse(data);
+    document.getElementById("bold").innerHTML ="User ID: "+obj[0].userId;
+    document.getElementById("data").innerHTML="";
+    for(let i=0;i<obj.length;i++)
+    {
+        document.getElementById("data").innerHTML +="Movie Id:"+obj[i].movieId+" Rating:"+obj[i].rating+"<br>";
+    }
+}
+function getAll()
+{
+
+    theUrl='http://localhost:8084/getAll';
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.withCredentials = true;
+    xmlHttp.send(null);
+
+    console.log(xmlHttp.responseText);
+    showAllMovies(xmlHttp.responseText);
+
+}
+
+function getRatingsByMovie()
+{
+
+    var textbox = document.getElementById("bymovie"); 
+    theUrl='http://localhost:8084/movies/'+encodeURIComponent(textbox.value);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.withCredentials = true;
+    xmlHttp.send(null);
+    console.log(xmlHttp.responseText);
+    const obj = JSON.parse(xmlHttp.responseText);
+    document.getElementById("ratings").innerHTML="";
+    for(let i=0;i<obj.ratings.length;i++)
+    {
+    document.getElementById("ratings").innerHTML +="<b>User Id: </b>"+obj.ratings[i].userId+"          <b>Rating: </b>"+obj.ratings[i].rating+"<br>";
+    }
+}
+</script>
+</head>
+
+
+ <body> 
+   
+    <!-- <form action="http://localhost:8084/getAll" method="get">
+        <input type="submit" value="Fetch all Movies" />
+    </form> -->
+   
+    Find Ratings given by user
+    <input type="text" name="user" id="user" />
+    <input type="submit" value="GET" onclick="UserAction(); return false;" />
+    <h2 id="bold"></h2>
+    <p id="data"></p>
+
+    Get All the ratings of the movie
+    <input type="text" name="bymovie" id="bymovie" />
+    <input type="submit" value="Get Ratings of Movie" onclick="getRatingsByMovie(); return false;" />
+    <h2 id="bold"></h2>
+    <p id="ratings"></p>
+
+    <input type="submit" value="Fetch All Movies" onclick="getAll(); " />
+    <p id="allMovies"></p>
+ </body>
+</html>
